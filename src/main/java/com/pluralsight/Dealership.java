@@ -38,8 +38,8 @@ public class Dealership {
         return this;
     }
 
-    public void addVehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, BigDecimal price){
-        inventory.add(new Vehicle(vin,year,make,model,vehicleType,color,odometer,price));
+    public void addVehicle(Vehicle vehicle){
+        inventory.add(vehicle);
     }
 
     public void removeVehicle(){
