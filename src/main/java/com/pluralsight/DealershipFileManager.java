@@ -2,13 +2,16 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class DealershipFileManager {
 
-    public static void getDealership(String fileName){
+    private DealershipFileManager(){}
 
-        try{
+    public static Dealership getDealership(String fileName) throws IOException {
+
+
             BufferedReader dealershipReader = new BufferedReader(new FileReader(fileName));
 
             String dealershipLine = dealershipReader.readLine();
@@ -37,10 +40,7 @@ public class DealershipFileManager {
                 Vehicle vehicle = new Vehicle(vim,year,make,model,vehicleType,color,odometer,price);
                 dealership.addVehicle(vehicle);
             }
-        }
-        catch (Exception e){
-            System.err.println("Error reading file!");
-        }
+            return dealership;
     }
 
     public static void saveDealership(){
