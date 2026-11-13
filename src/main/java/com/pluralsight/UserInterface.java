@@ -9,7 +9,7 @@ public class UserInterface {
 
     private static final String FILE_NAME = "inventory.csv";
 
-    private UserInterface init() throws IOException {
+    private UserInterface init() {
         this.dealership = DealershipFileManager.getDealership(FILE_NAME);
         return this;
     }

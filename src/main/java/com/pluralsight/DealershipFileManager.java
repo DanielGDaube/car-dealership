@@ -9,9 +9,10 @@ public class DealershipFileManager {
 
     private DealershipFileManager(){}
 
-    public static Dealership getDealership(String fileName) throws IOException {
+    public static Dealership getDealership(String fileName)  {
 
 
+        try {
             BufferedReader dealershipReader = new BufferedReader(new FileReader(fileName));
 
             String dealershipLine = dealershipReader.readLine();
@@ -21,12 +22,12 @@ public class DealershipFileManager {
             String address = dealershipTokens[1];
             String phone = dealershipTokens[2];
 
-            Dealership dealership = new Dealership(name,address,phone);
+            Dealership dealership = new Dealership(name, address, phone);
 
 
             String vehicleLine;
 
-            while ((vehicleLine = dealershipReader.readLine()) != null){
+            while ((vehicleLine = dealershipReader.readLine()) != null) {
                 String[] vehicleTokens = vehicleLine.split("\\|");
                 int vim = Integer.parseInt(vehicleTokens[0]);
                 int year = Integer.parseInt(vehicleTokens[1]);
@@ -37,10 +38,15 @@ public class DealershipFileManager {
                 int odometer = Integer.parseInt(vehicleTokens[6]);
                 BigDecimal price = new BigDecimal(vehicleTokens[7]);
 
-                Vehicle vehicle = new Vehicle(vim,year,make,model,vehicleType,color,odometer,price);
+                Vehicle vehicle = new Vehicle(vim, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
             }
             return dealership;
+        }
+        catch (Exception e){
+            System.err.println("Error reading file!");
+            return null;
+        }
     }
 
     public static void saveDealership(){
