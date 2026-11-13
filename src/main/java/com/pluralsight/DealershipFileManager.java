@@ -41,7 +41,6 @@ public class DealershipFileManager {
         catch (Exception e){
             System.err.println("Error reading file!");
         }
-
     }
 
     public static void saveDealership(){
