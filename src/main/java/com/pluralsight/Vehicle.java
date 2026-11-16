@@ -78,4 +78,9 @@ public class Vehicle {
         this.price = price;
         return this;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%-5d|%-4d|%-6s|%-8s|%-6s|%-6s|%-6d|%.2f",vin,year,make,model,vehicleType,color,odometer,price);
+    }
 }
