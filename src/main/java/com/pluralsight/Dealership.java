@@ -42,8 +42,8 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void removeVehicle(){
-
+    public void removeVehicle(int vin){
+        inventory.removeIf(vehicle -> vehicle.getVin() == vin);
     }
 
     public ArrayList<Vehicle> getAllVehicles(){
