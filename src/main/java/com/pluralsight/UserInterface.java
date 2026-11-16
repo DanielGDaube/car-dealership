@@ -51,7 +51,7 @@ public class UserInterface {
                     scanner.close();
                     menuCondition = false;
                 }
-                case default -> System.err.println("Invalid Option!");
+                default -> System.err.println("Invalid Option!");
             }
         }
     }
@@ -84,6 +84,10 @@ public class UserInterface {
 
     public void processGetByVehicleTypeRequest(){
 
+    }
+
+    public void processGetAllVehiclesRequest(){
+        displayVehicles(dealership.getAllVehicles());
     }
 
     public void processAddVehicleRequest(){
