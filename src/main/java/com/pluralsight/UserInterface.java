@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,6 +11,8 @@ public class UserInterface {
 
     private static final String FILE_NAME = "inventory.csv";
 
+    Scanner scanner = new Scanner(System.in);
+
     private UserInterface init() {
         this.dealership = DealershipFileManager.getDealership(FILE_NAME);
         return this;
@@ -18,7 +21,7 @@ public class UserInterface {
     public void display(){
         init();
 
-        Scanner scanner = new Scanner(System.in);
+
 
         boolean menuCondition = true;
 
@@ -90,6 +93,29 @@ public class UserInterface {
     }
 
     public void processAddVehicleRequest(){
+        System.out.println("Please enter the following information:");
+        System.out.print("VIN:");
+        int vin = scanner.nextInt();
+        System.out.print("Year:");
+        int year = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Make and Model:");
+        String makeModel = scanner.nextLine();
+        int spaceIndex = makeModel.indexOf(" ");
+        String make = makeModel.substring(0, spaceIndex);
+        String model = makeModel.substring(spaceIndex, makeModel.length()-1);
+        System.out.print("Type:");
+        String type = scanner.nextLine();
+        System.out.print("Color:");
+        String color = scanner.nextLine();
+        System.out.print("Odometer:");
+        int odometer = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Price:");
+        BigDecimal price = new BigDecimal(scanner.nextLine());
+
+        dealership.addVehicle(new Vehicle(vin,year,make,model,type,color,odometer,price));
+        System.out.println("Thank You!");
 
     }
 
