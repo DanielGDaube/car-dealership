@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -53,5 +54,12 @@ public class UserInterface {
                 case default -> System.err.println("Invalid Option!");
             }
         }
+    }
+
+    private void displayVehicles(List<Vehicle> searchList){
+        for (Vehicle vehicle : searchList){
+            System.out.println(vehicle);
+        }
+
     }
 }
