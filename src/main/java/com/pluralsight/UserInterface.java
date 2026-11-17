@@ -84,7 +84,18 @@ public class UserInterface {
     }
 
     public void processGetByMakeModelRequest(){
-
+        scanner.nextLine();
+        System.out.print("Enter the desired make and model:");
+        String makeModel = scanner.nextLine();
+        int spaceIndex = makeModel.indexOf(" ");
+        String make = makeModel.substring(0, spaceIndex);
+        String model = makeModel.substring(spaceIndex+1);
+        List<Vehicle> makeModelList = dealership.getVehiclesByMakeModel(make, model);
+        if (makeModelList.isEmpty()) {
+            System.out.println("No vehicles found with specified make and model.");
+        } else {
+            displayVehicles(makeModelList);
+        }
     }
 
     public void processGetByYearRequest(){
@@ -118,7 +129,7 @@ public class UserInterface {
         String makeModel = scanner.nextLine();
         int spaceIndex = makeModel.indexOf(" ");
         String make = makeModel.substring(0, spaceIndex);
-        String model = makeModel.substring(spaceIndex, makeModel.length()-1);
+        String model = makeModel.substring(spaceIndex+1);
         System.out.print("Type:");
         String type = scanner.nextLine();
         System.out.print("Color:");
