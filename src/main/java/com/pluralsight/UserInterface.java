@@ -124,7 +124,19 @@ public class UserInterface {
     }
 
     public void processGetByMileageRequest(){
-
+        scanner.nextLine();
+        System.out.print("Enter the desired range in the following format:");
+        System.out.println("000000 - 000000:");
+        String minMax = scanner.nextLine();
+        String[] minMaxTokens = minMax.split("-");
+        int min = Integer.parseInt(minMaxTokens[0].trim());
+        int max = Integer.parseInt(minMaxTokens[1].trim());
+        List<Vehicle> mileageList = dealership.getVehiclesByMileage(min,max);
+        if (mileageList.isEmpty()) {
+            System.out.println("No vehicles found within the specified range.");
+        } else {
+            displayVehicles(mileageList);
+        }
     }
 
     public void processGetByVehicleTypeRequest(){
