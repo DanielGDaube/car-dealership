@@ -39,7 +39,7 @@ public class UserInterface {
                 System.out.println("3 - Find vehicles within a range of years");
                 System.out.println("4 - Find vehicles by color");
                 System.out.println("5 - Find vehicles by mileage");
-                System.out.println("6 - Find vehicles type");
+                System.out.println("6 - Find vehicles by type");
                 System.out.println("7 - List all vehicles");
                 System.out.println("8 - Add a vehicle");
                 System.out.println("9 - Remove a vehicle");
