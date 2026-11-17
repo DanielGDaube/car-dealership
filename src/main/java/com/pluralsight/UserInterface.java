@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -99,7 +96,19 @@ public class UserInterface {
     }
 
     public void processGetByYearRequest(){
-
+        scanner.nextLine();
+        System.out.println("Enter the desired range in the following format:");
+        System.out.print("yyyy - yyyy:");
+        String startEnd = scanner.nextLine();
+        String[] startEndTokens = startEnd.split("-");
+        int start = Integer.parseInt(startEndTokens[0].trim());
+        int end = Integer.parseInt(startEndTokens[1].trim());
+        List<Vehicle> yearList = dealership.getVehiclesByYear(start,end);
+        if (yearList.isEmpty()) {
+            System.out.println("No vehicles found within the specified range.");
+        } else {
+            displayVehicles(yearList);
+        }
     }
 
     public void processGetByColorRequest(){
