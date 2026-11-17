@@ -120,6 +120,16 @@ public class UserInterface {
     }
 
     public void processRemoveVehicleRequest(){
-
+        int startSize = dealership.getAllVehicles().size();
+        System.out.println("Please enter the VIN of the vehicle you would like to remove.");
+        System.out.print("VIN:");
+        dealership.removeVehicle(scanner.nextInt());
+        scanner.nextLine();
+        if (dealership.getAllVehicles().size() == startSize){
+            System.out.println("VIN not found! Please try again.");
+        }
+        else {
+            System.out.println("Vehicle removed.");
+        }
     }
 }
