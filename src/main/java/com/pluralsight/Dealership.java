@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dealership {
+    // 4 private fields
     private String name;
     private String address;
     private String phone;
     private ArrayList<Vehicle> inventory;
 
+    // Constructor using first 3 fields
+    // Instantiates inventory
     public Dealership(String name, String address, String phone) {
         inventory = new ArrayList<>();
         this.name = name;
@@ -17,6 +20,7 @@ public class Dealership {
         this.phone = phone;
     }
 
+    // Getters/Setters
     public String getName() {return name;}
 
     public Dealership setName(String name) {
@@ -38,18 +42,22 @@ public class Dealership {
         return this;
     }
 
+    // Adds a vehicle to the inventory ArrayList
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
     }
 
+    // Removes a vehicle from the inventory ArrayList if the given VIN matches the vehicle's VIN
     public void removeVehicle(int vin){
         inventory.removeIf(vehicle -> vehicle.getVin() == vin);
     }
 
+    // Returns the entire inventory
     public ArrayList<Vehicle> getAllVehicles(){
         return inventory;
     }
 
+    // Returns a list of vehicles within a range
     public List<Vehicle> getVehiclesByPrice(BigDecimal min, BigDecimal max){
         List<Vehicle> priceList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -60,6 +68,7 @@ public class Dealership {
         return priceList;
     }
 
+    // Returns a list of vehicles with matching make and model
     public List<Vehicle> getVehiclesByMakeModel(String make, String model){
         List<Vehicle> makeModelList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -70,6 +79,7 @@ public class Dealership {
         return makeModelList;
     }
 
+    // Returns a list of vehicles within a range
     public List<Vehicle> getVehiclesByYear(int min, int max){
         List<Vehicle> yearList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -80,6 +90,7 @@ public class Dealership {
         return yearList;
     }
 
+    // Returns a list of vehicles with a matching color
     public List<Vehicle> getVehiclesByColor(String color){
         List<Vehicle> colorList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -90,6 +101,7 @@ public class Dealership {
         return colorList;
     }
 
+    // Returns a list of vehicles within a range
     public List<Vehicle> getVehiclesByMileage(int min, int max){
         List<Vehicle> mileageList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -100,6 +112,7 @@ public class Dealership {
         return mileageList;
     }
 
+    // Returns a list of vehicles with matching vehicle type
     public List<Vehicle> getVehiclesByType(String vehicleType){
         List<Vehicle> typeList = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -109,6 +122,8 @@ public class Dealership {
         }
         return typeList;
     }
+
+    // to string formatting
     @Override
     public String toString(){
         return String.format("%s|%s|%s",name,address,phone);

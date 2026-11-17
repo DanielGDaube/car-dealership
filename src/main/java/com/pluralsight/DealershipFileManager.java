@@ -6,8 +6,14 @@ import java.util.ArrayList;
 
 public class DealershipFileManager {
 
+    // Constructor
     private DealershipFileManager(){}
 
+    // Reads the given file
+    // Information from first line is used to create a new dealership
+    // Information from the following lines are used to create new vehicles
+    // Calls the dealerships addVehicle() method to add the new vehicles to the dealership's inventory
+    // Returns the dealership to be used in UserInterface.java
     public static Dealership getDealership(String fileName)  {
 
 
@@ -48,6 +54,7 @@ public class DealershipFileManager {
         }
     }
 
+    // Called after adding or removing a vehicle to overwrite 'inventory.csv' with new inventory list
     public static void saveDealership(String fileName, ArrayList<Vehicle> inventory, Dealership dealership){
         try {
             BufferedWriter dealershipWriter = new BufferedWriter(new FileWriter(fileName));

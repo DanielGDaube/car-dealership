@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.math.BigDecimal;
 
 public class Vehicle {
+    // 8 private fields
     private int vin;
     private int year;
     private String make;
@@ -12,6 +13,7 @@ public class Vehicle {
     private int odometer;
     private BigDecimal price;
 
+    // Constructor using all 8 fields
     public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, BigDecimal price) {
         this.vin = vin;
         this.year = year;
@@ -23,6 +25,7 @@ public class Vehicle {
         this.price = price;
     }
 
+    // Getters/Setters
     public int getVin() {return vin;}
 
     public Vehicle setVin(int vin) {
@@ -79,6 +82,7 @@ public class Vehicle {
         return this;
     }
 
+    // to string formatting
     @Override
     public String toString(){
         return String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",vin,year,make,model,vehicleType,color,odometer,price);

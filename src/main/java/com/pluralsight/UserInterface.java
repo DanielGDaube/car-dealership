@@ -6,18 +6,23 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    // 1 field
     Dealership dealership;
 
+    // Name of file to read from and write to
     private static final String FILE_NAME = "inventory.csv";
 
     Scanner scanner = new Scanner(System.in);
 
+    // Initializes the user interface by calling DealershipFileManager.getDealership()
     private UserInterface init() {
         this.dealership = DealershipFileManager.getDealership(FILE_NAME);
         System.out.println(dealership);
         return this;
     }
 
+    // Calls init() to set the dealership that should be displayed
+    // Displays a menu that uses a switch to call selected methods
     public void display(){
         init();
 
@@ -63,12 +68,16 @@ public class UserInterface {
         }
     }
 
+    // Helper method to display a list of vehicles
     private void displayVehicles(List<Vehicle> searchList){
         for (Vehicle vehicle : searchList){
             System.out.println(vehicle);
         }
     }
 
+    // Receives a price range from the user
+    // Calls dealership.getVehiclesByPrice() using the given range to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByPriceRequest() {
         scanner.nextLine();
         while (true){
@@ -94,6 +103,9 @@ public class UserInterface {
         }
     }
 
+    // Receives a make and model from the user
+    // Calls dealership.getVehiclesByMakeModel() using the given make and model to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByMakeModelRequest(){
         scanner.nextLine();
         while (true) {
@@ -117,6 +129,9 @@ public class UserInterface {
         }
     }
 
+    // Receives a year range from the user
+    // Calls dealership.getVehiclesByYear() using the given range to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByYearRequest(){
         scanner.nextLine();
         while (true) {
@@ -141,6 +156,9 @@ public class UserInterface {
         }
     }
 
+    // Receives a color from the user
+    // Calls dealership.getVehiclesByColor() using the given color to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByColorRequest(){
         scanner.nextLine();
         while (true) {
@@ -160,6 +178,9 @@ public class UserInterface {
         }
     }
 
+    // Receives a mileage range from the user
+    // Calls dealership.getVehiclesByMileage() using the given range to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByMileageRequest(){
         scanner.nextLine();
         while (true) {
@@ -183,6 +204,9 @@ public class UserInterface {
         }
     }
 
+    // Receives a vehicle type from the user
+    // Calls dealership.getVehiclesByType() using the given type to return a list of vehicles
+    // Calls displayVehicles() using the returned list
     public void processGetByVehicleTypeRequest(){
         scanner.nextLine();
         while (true) {
@@ -202,10 +226,13 @@ public class UserInterface {
         }
     }
 
+    // Calls displayVehicles() dealership.getAllVehicles() to print the whole inventory
     public void processGetAllVehiclesRequest(){
         displayVehicles(dealership.getAllVehicles());
     }
 
+    // Receives information from the user to create a new vehicle and add it to the inventory
+    // Calls DealershipFileManager.saveDealership() to save the new list to 'inventory.csv'
     public void processAddVehicleRequest(){
         while (true) {
             try {
@@ -249,6 +276,8 @@ public class UserInterface {
 
     }
 
+    // Receives a VIN from the user to remove a vehicle with the matching VIN
+    // Calls DealershipFileManager.saveDealership() to save the new list to 'inventory.csv'
     public void processRemoveVehicleRequest(){
         while (true) {
             try {
