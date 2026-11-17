@@ -82,9 +82,24 @@ public class UserInterface {
         scanner.nextLine();
         while (true){
             try {
-                System.out.println("Please enter your desired price range in the following format:");
-                System.out.print("$00.00 - $00.00 :");
+                String minString;
+                String maxString;
+                System.out.println("Please enter your desired price range:");
                 String minMax = scanner.nextLine();
+                //Attempts to account for various user input errors to avoid saving minString as an invalid input
+                if (minMax.length() > 10 || minMax.length() < 6 || !minMax.matches(".*\\d.*")) {
+                    System.err.println("Invalid input!");
+                    continue;
+                }
+                else if (!minMax.contains("-") && !minMax.contains(" ")){ //Accounts for users entering values one at a time
+                    minString = minMax;
+                    maxString = scanner.nextLine();
+                    minMax = String.join("-",minString,maxString).trim();
+                } else if (!minMax.contains("-") && minMax.contains(" ")) { //Accounts for users separating values with " " rather than "-"
+                    minMax = minMax.replace(" ","-").trim();
+                } else {
+                    minMax = minMax.trim();
+                }
                 minMax = minMax.replace("$", "");
                 String[] minMaxTokens = minMax.split("-");
                 BigDecimal min = new BigDecimal(minMaxTokens[0].trim());
@@ -298,5 +313,12 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
+    }
+
+    private String signRemove(String price){
+        if (price.contains("$")){
+            price = price.replace("$","");
+        }
+        return price;
     }
 }
