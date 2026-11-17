@@ -2,6 +2,8 @@ package com.pluralsight;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,8 +66,21 @@ public class UserInterface {
         }
     }
 
-    public void processGetByPriceRequest(){
-
+    public void processGetByPriceRequest() {
+        scanner.nextLine();
+        System.out.println("Please enter your desired price range in the following format:");
+        System.out.print("$00.00 - $00.00 :");
+        String minMax = scanner.nextLine();
+        minMax = minMax.replace("$", "");
+        String[] minMaxTokens = minMax.split("-");
+        BigDecimal min = new BigDecimal(minMaxTokens[0].trim());
+        BigDecimal max = new BigDecimal(minMaxTokens[1].trim());
+        List<Vehicle> priceList = dealership.getVehiclesByPrice(min, max);
+        if (priceList.isEmpty()) {
+            System.out.println("No vehicles found in price range.");
+        } else {
+            displayVehicles(priceList);
+        }
     }
 
     public void processGetByMakeModelRequest(){
