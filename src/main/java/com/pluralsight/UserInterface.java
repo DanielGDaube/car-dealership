@@ -314,11 +314,4 @@ public class UserInterface {
             }
         }
     }
-
-    private String signRemove(String price){
-        if (price.contains("$")){
-            price = price.replace("$","");
-        }
-        return price;
-    }
 }
