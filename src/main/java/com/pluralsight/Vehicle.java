@@ -81,6 +81,6 @@ public class Vehicle {
 
     @Override
     public String toString(){
-        return String.format("%-5d|%-4d|%-6s|%-8s|%-6s|%-6s|%-6d|%.2f",vin,year,make,model,vehicleType,color,odometer,price);
+        return String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",vin,year,make,model,vehicleType,color,odometer,price);
     }
 }

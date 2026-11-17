@@ -109,4 +109,8 @@ public class Dealership {
         }
         return typeList;
     }
+    @Override
+    public String toString(){
+        return String.format("%s|%s|%s",name,address,phone);
+    }
 }

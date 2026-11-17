@@ -14,6 +14,7 @@ public class UserInterface {
 
     private UserInterface init() {
         this.dealership = DealershipFileManager.getDealership(FILE_NAME);
+        System.out.println(dealership);
         return this;
     }
 
@@ -178,6 +179,7 @@ public class UserInterface {
         BigDecimal price = new BigDecimal(scanner.nextLine());
 
         dealership.addVehicle(new Vehicle(vin,year,make,model,type,color,odometer,price));
+        DealershipFileManager.saveDealership(FILE_NAME,dealership.getAllVehicles(),dealership);
         System.out.println("Thank You!");
 
     }
@@ -193,6 +195,7 @@ public class UserInterface {
         }
         else {
             System.out.println("Vehicle removed.");
+            DealershipFileManager.saveDealership(FILE_NAME,dealership.getAllVehicles(),dealership);
         }
     }
 }

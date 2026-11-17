@@ -1,9 +1,8 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class DealershipFileManager {
 
@@ -49,7 +48,20 @@ public class DealershipFileManager {
         }
     }
 
-    public static void saveDealership(){
+    public static void saveDealership(String fileName, ArrayList<Vehicle> inventory, Dealership dealership){
+        try {
+            BufferedWriter dealershipWriter = new BufferedWriter(new FileWriter(fileName));
+            dealershipWriter.write(String.valueOf(dealership));
+            dealershipWriter.write("\n");
+            for (Vehicle vehicle : inventory){
+                dealershipWriter.write(String.valueOf(vehicle));
+                dealershipWriter.write("\n");
+            }
+            dealershipWriter.close();
+        }
+        catch (Exception e){
+            System.err.println("Error printing file!");
+        }
 
     }
 }
