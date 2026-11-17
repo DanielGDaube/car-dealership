@@ -11,7 +11,7 @@ public class DealershipFileManager {
 
     // Reads the given file
     // Information from first line is used to create a new dealership
-    // Information from the following lines are used to create new vehicles
+    // Calls getVehicle() to create new vehicles from the following lines
     // Calls the dealerships addVehicle() method to add the new vehicles to the dealership's inventory
     // Returns the dealership to be used in UserInterface.java
     public static Dealership getDealership(String fileName)  {
@@ -33,17 +33,7 @@ public class DealershipFileManager {
             String vehicleLine;
 
             while ((vehicleLine = dealershipReader.readLine()) != null) {
-                String[] vehicleTokens = vehicleLine.split("\\|");
-                int vim = Integer.parseInt(vehicleTokens[0]);
-                int year = Integer.parseInt(vehicleTokens[1]);
-                String make = vehicleTokens[2];
-                String model = vehicleTokens[3];
-                String vehicleType = vehicleTokens[4];
-                String color = vehicleTokens[5];
-                int odometer = Integer.parseInt(vehicleTokens[6]);
-                BigDecimal price = new BigDecimal(vehicleTokens[7]);
-
-                Vehicle vehicle = new Vehicle(vim, year, make, model, vehicleType, color, odometer, price);
+                Vehicle vehicle = getVehicle(vehicleLine);
                 dealership.addVehicle(vehicle);
             }
             return dealership;
@@ -52,6 +42,21 @@ public class DealershipFileManager {
             System.err.println("Error reading file!");
             return null;
         }
+    }
+
+    // Information from file lines are used to create new vehicles
+    private static Vehicle getVehicle(String vehicleLine) {
+        String[] vehicleTokens = vehicleLine.split("\\|");
+        int vim = Integer.parseInt(vehicleTokens[0]);
+        int year = Integer.parseInt(vehicleTokens[1]);
+        String make = vehicleTokens[2];
+        String model = vehicleTokens[3];
+        String vehicleType = vehicleTokens[4];
+        String color = vehicleTokens[5];
+        int odometer = Integer.parseInt(vehicleTokens[6]);
+        BigDecimal price = new BigDecimal(vehicleTokens[7]);
+
+        return new Vehicle(vim, year, make, model, vehicleType, color, odometer, price);
     }
 
     // Called after adding or removing a vehicle to overwrite 'inventory.csv' with new inventory list
