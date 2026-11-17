@@ -112,7 +112,15 @@ public class UserInterface {
     }
 
     public void processGetByColorRequest(){
-
+        scanner.nextLine();
+        System.out.print("Enter the desired color:");
+        String color = scanner.nextLine();
+        List<Vehicle> colorList = dealership.getVehiclesByColor(color);
+        if (colorList.isEmpty()) {
+            System.out.println("No vehicles found with that color.");
+        } else {
+            displayVehicles(colorList);
+        }
     }
 
     public void processGetByMileageRequest(){
