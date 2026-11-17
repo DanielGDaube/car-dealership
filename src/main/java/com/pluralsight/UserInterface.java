@@ -140,7 +140,15 @@ public class UserInterface {
     }
 
     public void processGetByVehicleTypeRequest(){
-
+        scanner.nextLine();
+        System.out.print("Enter the desired type:");
+        String type = scanner.nextLine();
+        List<Vehicle> typeList = dealership.getVehiclesByType(type);
+        if (typeList.isEmpty()) {
+            System.out.println("No vehicles found of that type.");
+        } else {
+            displayVehicles(typeList);
+        }
     }
 
     public void processGetAllVehiclesRequest(){
