@@ -107,9 +107,24 @@ public void processGetByPriceRequest() {
     scanner.nextLine();
     while (true){
         try {
-            System.out.println("Please enter your desired price range in the following format:");
-            System.out.print("$00.00 - $00.00 :");
+            String minString;
+            String maxString;
+            System.out.println("Please enter your desired price range:");
             String minMax = scanner.nextLine();
+            //Attempts to account for various user input errors to avoid saving minString as an invalid input
+            if (minMax.length() > 10 || minMax.length() < 6 || !minMax.matches(".*\\d.*")) {
+                System.err.println("Invalid input!");
+                continue;
+            }
+            else if (!minMax.contains("-") && !minMax.contains(" ")){ //Accounts for users entering values one at a time
+                minString = minMax;
+                maxString = scanner.nextLine();
+                minMax = String.join("-",minString,maxString).trim();
+            } else if (!minMax.contains("-") && minMax.contains(" ")) { //Accounts for users separating values with " " rather than "-"
+                minMax = minMax.replace(" ","-").trim();
+            } else {
+                minMax = minMax.trim();
+            }
             minMax = minMax.replace("$", "");
             String[] minMaxTokens = minMax.split("-");
             BigDecimal min = new BigDecimal(minMaxTokens[0].trim());
@@ -128,17 +143,18 @@ public void processGetByPriceRequest() {
     }
 }
 ```
-This code takes in the minimum and maximum price range as one string input from the 
-user then separates the two values and converts them into BigDecimals. I wrote like
-this because I felt it would be more convenient for the user to enter both of the values
-at the same time.
+This code account for several possible format that the user could input information in.
+I wrote it this way to allow the user as many options as possible for how they want to
+enter the information.
 
 ## Future Work
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
--
--
+- Creat similar format checks for mileage range and year range
+- Allow the user to choose to search by just minimum, just maximum, or both for value range searches
+- Combine common or similar error messages into one method for cleaner code
+- Creat helper getVehicles() method in Dealership.java to reduce repeat for loops across methods
 
 ## Resources
 
